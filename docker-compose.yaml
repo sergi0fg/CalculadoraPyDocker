@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   calculadora1:
-    build: .
+    build: . #este servicio utiliza el Dockerfile que está en el dir actual (accedo con .) para construir la imagen Docker
     environment:
       - OPERACION=suma
       - A=5
