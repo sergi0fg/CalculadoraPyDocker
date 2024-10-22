@@ -32,6 +32,7 @@ def main():
         resultado = "Operación no válida."
 
     print(f"El resultado de la operación es: {resultado}")
+  
 
 if __name__ == "__main__":
     main()

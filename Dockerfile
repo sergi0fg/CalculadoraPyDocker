@@ -7,6 +7,9 @@ WORKDIR /app
 # Copiar el archivo de la calculadora al contenedor
 COPY calculadora.py .
 
+# Establecer la variable de entorno para que use utf-8
+ENV PYTHONUNBUFFERED=1
+
 # Instalar cualquier dependencia necesaria (en este caso, no hay ninguna)
 # RUN pip install -r requirements.txt
 

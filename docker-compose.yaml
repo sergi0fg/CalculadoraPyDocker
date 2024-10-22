@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  calculadora1:
+    build: .
+    environment:
+      - OPERACION=suma
+      - A=5
+      - B=3
+    networks:
+      - calculadora-net
+
+  calculadora2:
+    build: .
+    environment:
+      - OPERACION=multiplicacion
+      - A=7
+      - B=3
+    networks:
+      - calculadora-net
+
+  calculadora-host:
+    build: .
+    environment:
+      - OPERACION=resta
+      - A=10
+      - B=4
+    ports:
+      - "5051:5000"  # Expone el puerto al equipo anfitrión
+    networks:
+      - host-net
+
+networks:
+  calculadora-net:
+    driver: bridge
+  host-net:
+    driver: bridge
