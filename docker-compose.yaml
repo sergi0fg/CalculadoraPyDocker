@@ -1,14 +1,14 @@
 version: '3.8'
 
-services:
+services: # Defino los servicios, que son contenedores y las redes entre ellos
   calculadora1:
-    build: . #este servicio utiliza el Dockerfile que está en el dir actual (accedo con .) para construir la imagen Docker
+    build: . # este servicio utiliza el Dockerfile que está en el dir actual (accedo con .) para construir la imagen Docker
     environment:
       - OPERACION=suma
       - A=5
       - B=3
     networks:
-      - calculadora-net
+      - calculadora-net # Es una red de tipo bridge que conecta los contenedores calculadora1 y calculadora2 entre sí.
 
   calculadora2:
     build: .
@@ -28,10 +28,11 @@ services:
     ports:
       - "5051:5000"  # Expone el puerto al equipo anfitrión
     networks:
-      - host-net
+      - host-net # Otra red bridge, pero esta conecta calculadora-host con el equipo anfitrión.
 
-networks:
+networks: #define las redes que serán utilizadas por los servicios (contenedores)
   calculadora-net:
-    driver: bridge
+    driver: bridge # Es el tipo de red por defecto que Docker usa para que los contenedores se comuniquen entre sí de forma aislada, dentro de una misma red.Es como una red local (LAN) dentro de Docker. 
+                  #Los contenedores en la misma red bridge pueden comunicarse entre sí a través de nombres de servicio o direcciones IP internas.
   host-net:
     driver: bridge
